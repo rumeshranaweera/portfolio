@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-neutral-100`}>
+      <body
+        className={`${inter.className} bg-[url(https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png)]`}
+      >
         <RumeshText />
         <Toaster />
         <Nav />

@@ -6,7 +6,7 @@ const RumeshText = () => {
 
   return (
     <motion.span
-      className="text-9xl -z-50 select-none fixed top-16 left-0 md:text-[150px] lg:text-[200px] font-extrabold text-opacity-5 text-black"
+      className="text-9xl -z-50 select-none fixed top-16 left-0 md:text-[200px] lg:text-[250px] font-extrabold text-opacity-5 text-black"
       style={{ WebkitWritingMode: "vertical-rl", top: y }}
     >
       Rumesh Ranaweera

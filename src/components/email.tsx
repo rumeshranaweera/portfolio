@@ -73,7 +73,7 @@ export default function Email() {
     }
   };
   return (
-    <Card className="mx-auto max-w-2xl  bg-neutral-200/10 backdrop-blur-lg">
+    <Card className="mx-auto max-w-2xl my-5  bg-neutral-200/10 backdrop-blur-lg">
       <CardHeader className="flex justify-between">
         <div className="flex justify-between items-center">
           <CardTitle className="capitalize inline-block">
