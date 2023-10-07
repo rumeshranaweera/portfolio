@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import nodemailer from "nodemailer";
 
-export async function POST(req: Response) {
+export async function POST(req: Request) {
   const data: unknown = await req.json();
   try {
     const { email, message, name, subject } = emailSchema.parse(data);
