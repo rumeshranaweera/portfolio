@@ -17,7 +17,7 @@ const Nav = () => {
         transition={{ duration: 0.3 }}
         className="container bg-neutral-200/50 w-full fixed top-3 z-50 rounded-full flex justify-center p-2"
       >
-        <span className="aspect-square h-20 rounded-full bg-slate-500  grid place-items-center text-white font-bold">
+        <span className="aspect-square h-20 rounded-full bg-neutral-900  grid place-items-center text-white font-bold">
           RR
         </span>
       </motion.nav>
