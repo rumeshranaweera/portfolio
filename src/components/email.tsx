@@ -110,18 +110,14 @@ export default function Email() {
             <div className="flex flex-col md:flex-row space-y-1.5 md:space-y-0 md:justify-start gap-5">
               <div className="md:w-1/2">
                 <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  placeholder="Name of your project"
-                  {...register("name")}
-                />
+                <Input id="name" placeholder="name" {...register("name")} />
                 <p>{errors.name?.message}</p>
               </div>
               <div className="md:w-1/2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
-                  placeholder="Email of your project"
+                  placeholder="Email@email.com"
                   {...register("email")}
                 />
                 <p>{errors.email?.message}</p>
@@ -132,7 +128,7 @@ export default function Email() {
                 <Label htmlFor="subject">Subject</Label>
                 <Input
                   id="subject"
-                  placeholder="subject of your project"
+                  placeholder="subject"
                   {...register("subject")}
                 />
                 <p>{errors.subject?.message}</p>
