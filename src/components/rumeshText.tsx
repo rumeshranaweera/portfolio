@@ -3,7 +3,6 @@ import { motion, useTransform, useScroll } from "framer-motion";
 const RumeshText = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [1, -480]);
-  console.log(y);
 
   return (
     <motion.span
