@@ -1,0 +1,165 @@
+"use client";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import z from "zod";
+import { Textarea } from "./ui/textarea";
+import { useToast } from "./ui/use-toast";
+import axios from "axios";
+import { emailSchema } from "@/lib/schemas";
+import { useState } from "react";
+import { Loader, Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+export default function Email() {
+  const { toast } = useToast();
+  const [loading, isLoading] = useState(false);
+
+  type FormValues = z.infer<typeof emailSchema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormValues>({
+    resolver: zodResolver(emailSchema),
+  });
+  const onSubmit = (UserData: FormValues) => {
+    isLoading(true);
+    try {
+      emailSchema.parse(UserData);
+      axios
+        .post("/api/send", UserData)
+        .then((data) => {
+          toast({
+            description: `Thank you ${UserData.name} for reaching out. Your message has been sent.`,
+            title: "Email Sent",
+          });
+          reset({ message: "", subject: "" });
+        })
+        .catch((e) =>
+          toast({
+            variant: "destructive",
+            description: e.response.data + "try",
+          })
+        )
+        .finally(() => isLoading(false));
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        console.log();
+        toast({
+          variant: "destructive",
+
+          description: ` catch ${err.issues[0].path[0]} : ${err.issues[0].message}`,
+        });
+      }
+    }
+  };
+  return (
+    <Card className="container max-w-2xl mx-auto bg-neutral-200/10 backdrop-blur-lg">
+      <CardHeader>
+        <CardTitle className="capitalize">send me an email</CardTitle>
+        <CardDescription>
+          @{" "}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span
+                  className="font-bold cursor-pointer underline"
+                  onClick={(e) => {
+                    navigator.clipboard.writeText(e.currentTarget.innerText);
+                    toast({ description: "Email copied" });
+                  }}
+                >
+                  rumeshranaweera99@gmail.com
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>copy to chipboard</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="[&_p]:text-red-600 [&_p]:mt-2 [&_p]:font-semibold"
+        >
+          <div className="grid w-full items-center gap-4 ">
+            <div className="flex flex-col md:flex-row space-y-1.5 md:space-y-0 md:justify-start gap-5">
+              <div className="md:w-1/2">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  placeholder="Name of your project"
+                  {...register("name")}
+                />
+                <p>{errors.name?.message}</p>
+              </div>
+              <div className="md:w-1/2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  placeholder="Email of your project"
+                  {...register("email")}
+                />
+                <p>{errors.email?.message}</p>
+              </div>
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <div>
+                <Label htmlFor="subject">Subject</Label>
+                <Input
+                  id="subject"
+                  placeholder="subject of your project"
+                  {...register("subject")}
+                />
+                <p>{errors.subject?.message}</p>
+              </div>
+              <div>
+                <Label htmlFor="message">Message</Label>
+                <Textarea
+                  spellCheck
+                  id="message"
+                  placeholder="Type your message here."
+                  {...register("message")}
+                />
+                <p>{errors.message?.message}</p>
+              </div>
+              <Button
+                type="submit"
+                className={cn(
+                  "aria-disabled:cursor-not-allowed",
+                  loading &&
+                    "bg-opacity-50 bg-neutral-900 hover:bg-neutral-900/50"
+                )}
+                aria-disabled={loading}
+              >
+                {" "}
+                {loading && <Loader className="animate-spin mr-2" size={15} />}
+                Sent
+              </Button>
+            </div>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
