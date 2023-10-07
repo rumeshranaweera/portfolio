@@ -23,7 +23,7 @@ import { useToast } from "./ui/use-toast";
 import axios from "axios";
 import { emailSchema } from "@/lib/schemas";
 import { useState } from "react";
-import { Loader, Loader2 } from "lucide-react";
+import { ExternalLink, Loader, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -73,19 +73,35 @@ export default function Email() {
     }
   };
   return (
-    <Card className="container max-w-2xl mx-auto bg-neutral-200/10 backdrop-blur-lg">
+    <Card className="mx-auto max-w-2xl  bg-neutral-200/10 backdrop-blur-lg">
       <CardHeader className="flex justify-between">
-        <CardTitle className="capitalize inline-block">
-          send me an email
-        </CardTitle>
-        <Link href={""}>open in App</Link>
+        <div className="flex justify-between">
+          <CardTitle className="capitalize inline-block">
+            send me an email{" "}
+            <Link href={"mailto:rumeshranaweera99@gmail.com"}>
+              <span className="sr-only">open in app</span>
+              <ExternalLink
+                className="inline-block sm:hidden font-bold"
+                size={20}
+              />
+            </Link>
+          </CardTitle>
+          <Button variant={"ghost"} className="hidden sm:inline-block">
+            <Link
+              href={"mailto:rumeshranaweera99@gmail.com"}
+              className="inline-block font-bold capitalize"
+            >
+              open in App <ExternalLink className="inline-block" size={18} />
+            </Link>
+          </Button>
+        </div>
         <CardDescription>
           @{" "}
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
                 <span
-                  className="font-bold cursor-pointer underline"
+                  className="sm:font-bold cursor-pointer underline text-sm"
                   onClick={(e) => {
                     navigator.clipboard.writeText(e.currentTarget.innerText);
                     toast({ description: "Email copied" });
