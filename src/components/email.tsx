@@ -25,6 +25,7 @@ import { emailSchema } from "@/lib/schemas";
 import { useState } from "react";
 import { Loader, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function Email() {
   const { toast } = useToast();
@@ -73,8 +74,11 @@ export default function Email() {
   };
   return (
     <Card className="container max-w-2xl mx-auto bg-neutral-200/10 backdrop-blur-lg">
-      <CardHeader>
-        <CardTitle className="capitalize">send me an email</CardTitle>
+      <CardHeader className="flex justify-between">
+        <CardTitle className="capitalize inline-block">
+          send me an email
+        </CardTitle>
+        <Link href={""}>open in App</Link>
         <CardDescription>
           @{" "}
           <TooltipProvider>
