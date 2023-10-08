@@ -29,7 +29,8 @@ import Link from "next/link";
 
 export default function Email() {
   const { toast } = useToast();
-  const [loading, isLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  let isEmailFocused = false;
 
   type FormValues = z.infer<typeof emailSchema>;
 
@@ -42,7 +43,7 @@ export default function Email() {
     resolver: zodResolver(emailSchema),
   });
   const onSubmit = (UserData: FormValues) => {
-    isLoading(true);
+    setIsLoading(true);
     try {
       emailSchema.parse(UserData);
       axios
@@ -60,7 +61,7 @@ export default function Email() {
             description: e.response.data + "try",
           })
         )
-        .finally(() => isLoading(false));
+        .finally(() => setIsLoading(false));
     } catch (err) {
       if (err instanceof z.ZodError) {
         console.log();
@@ -78,8 +79,9 @@ export default function Email() {
     }
   };
   const handleClick = (e: MouseEvent<HTMLInputElement>) => {
-    if (e.currentTarget.value === "@gmail.com") {
+    if (e.currentTarget.value === "@gmail.com" && !isEmailFocused) {
       e.currentTarget.setSelectionRange(0, 0); // Set cursor to the start
+      isEmailFocused = true;
     }
   };
   return (
@@ -151,6 +153,7 @@ export default function Email() {
                   defaultValue={"@gmail.com"}
                   onFocus={handleFocus}
                   onClick={handleClick}
+                  onBlur={() => (isEmailFocused = false)}
                 />
                 <p>{errors.email?.message}</p>
               </div>
@@ -179,13 +182,15 @@ export default function Email() {
                 type="submit"
                 className={cn(
                   "aria-disabled:cursor-not-allowed",
-                  loading &&
+                  isLoading &&
                     "bg-opacity-50 bg-neutral-900 hover:bg-neutral-900/50"
                 )}
-                aria-disabled={loading}
+                aria-disabled={isLoading}
               >
                 {" "}
-                {loading && <Loader className="animate-spin mr-2" size={15} />}
+                {isLoading && (
+                  <Loader className="animate-spin mr-2" size={15} />
+                )}
                 Sent
               </Button>
             </div>
