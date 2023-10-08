@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -22,7 +22,7 @@ import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
 import axios from "axios";
 import { emailSchema } from "@/lib/schemas";
-import { useState } from "react";
+import { FocusEvent, MouseEvent, useState } from "react";
 import { ExternalLink, Loader, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -72,6 +72,16 @@ export default function Email() {
       }
     }
   };
+  const handleFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
+    if (e.target.value === "@gmail.com") {
+      e.target.setSelectionRange(0, 0); // Set cursor to the start
+    }
+  };
+  const handleClick = (e: MouseEvent<HTMLInputElement>) => {
+    if (e.currentTarget.value === "@gmail.com") {
+      e.currentTarget.setSelectionRange(0, 0); // Set cursor to the start
+    }
+  };
   return (
     <Card className="mx-auto max-w-2xl my-5  bg-neutral-200/10 backdrop-blur-lg">
       <CardHeader className="flex justify-between">
@@ -86,14 +96,17 @@ export default function Email() {
               />
             </Link>
           </CardTitle>
-          <Button variant={"ghost"} className="hidden sm:inline-block">
-            <Link
-              href={"mailto:rumeshranaweera99@gmail.com"}
-              className="inline-block font-bold capitalize"
-            >
-              open in App <ExternalLink className="inline-block" size={18} />
-            </Link>
-          </Button>
+
+          <Link
+            href={"mailto:rumeshranaweera99@gmail.com"}
+            className={`font-bold capitalize hidden sm:inline-block ${buttonVariants(
+              {
+                variant: "ghost",
+              }
+            )}`}
+          >
+            open in App <ExternalLink className="inline-block" size={18} />
+          </Link>
         </div>
         <CardDescription>
           @{" "}
@@ -135,6 +148,9 @@ export default function Email() {
                   id="email"
                   placeholder="Email@email.com"
                   {...register("email")}
+                  defaultValue={"@gmail.com"}
+                  onFocus={handleFocus}
+                  onClick={handleClick}
                 />
                 <p>{errors.email?.message}</p>
               </div>
