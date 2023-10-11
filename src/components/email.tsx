@@ -7,25 +7,25 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { emailSchema } from "@/lib/schemas";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { ExternalLink, Loader } from "lucide-react";
+import Link from "next/link";
+import { FocusEvent, MouseEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
-import axios from "axios";
-import { emailSchema } from "@/lib/schemas";
-import { FocusEvent, MouseEvent, useState } from "react";
-import { ExternalLink, Loader, Loader2 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 export default function Email() {
   const { toast } = useToast();

@@ -22,10 +22,10 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-[url(https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png)]`}
       >
-        <RumeshText />
         <Toaster />
         <Nav />
         {children}
+        <RumeshText />
       </body>
     </html>
   );
