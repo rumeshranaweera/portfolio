@@ -42,8 +42,8 @@ export default function Home() {
       <section id="projects">
         <h2 className="text-3xl md:text-4xl font-bold text-center">Projects</h2>
         <p className="font-bold text-center">
-          These are some of the projects I've had the privilege to build. Each
-          one represents a unique challenge and a creative solution,
+          These are some of the projects I&apos;ve had the privilege to build.
+          Each one represents a unique challenge and a creative solution,
           demonstrating my skills and commitment to crafting digital
           experiences. Explore these projects to get a glimpse of my work and
           the passion I bring to every endeavor.
