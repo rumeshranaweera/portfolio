@@ -2,6 +2,7 @@ import Email from "@/components/email";
 import HeroScrollButton from "@/components/heroScrollButton";
 import HeroTitle from "@/components/heroTitle";
 import Projects from "@/components/projects";
+import { Card, CardTitle } from "@/components/ui/card";
 import {
   Tooltip,
   TooltipContent,
@@ -49,6 +50,35 @@ export default function Home() {
           the passion I bring to every endeavor.
         </p>
         <Projects />
+      </section>
+      <section>
+        <h2 className="text-3xl md:text-4xl font-bold text-center my-4">
+          Tech stack
+        </h2>
+        <div className="flex flex-wrap justify-center gap-5 capitalize">
+          {[
+            "HTML",
+            "CSS",
+            "tailwindcss",
+            "JavaScript",
+            "TypeScript",
+            "MySQL",
+            "Python",
+            "React",
+            "Nextjs",
+            "Nodejs",
+            "Expressjs",
+            "NextAuth",
+            "Framer Motion",
+            "Redux",
+            "Zustand",
+            "Prisma",
+          ].map((tech, index) => (
+            <Card key={index} className="py-2 px-4 shadow">
+              <CardTitle>{tech}</CardTitle>
+            </Card>
+          ))}
+        </div>
       </section>
       <section id="email">
         <h2 className="text-3xl md:text-4xl font-bold text-center">Contact</h2>
