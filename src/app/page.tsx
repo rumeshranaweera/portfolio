@@ -1,5 +1,7 @@
 import Email from "@/components/email";
+import HeroScrollButton from "@/components/heroScrollButton";
 import HeroTitle from "@/components/heroTitle";
+import Projects from "@/components/projects";
 import {
   Tooltip,
   TooltipContent,
@@ -9,8 +11,11 @@ import {
 
 export default function Home() {
   return (
-    <main className="h-[200vh] mt-32 container mx-auto">
-      <section>
+    <main className="container mx-auto">
+      <section
+        id="hero"
+        className="h-screen flex flex-col items-center justify-center relative "
+      >
         <HeroTitle />
         <p className="text-center font-bold text-xl">
           I am a Software Engineering student at{" "}
@@ -31,19 +36,24 @@ export default function Home() {
           passion for software engineering drives me to seek opportunities for
           personal and professional growth within dynamic organizations.
         </p>
+
+        <HeroScrollButton />
       </section>
-      {/* <section className="my-5">
-        <h2 className="text-3xl md:text-4xl font-bold">Projects</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium,
-          distinctio repudiandae labore iure et voluptates debitis ex inventore
-          dolores. Blanditiis nulla voluptate nobis obcaecati eos reiciendis
-          nostrum quasi quaerat. Reprehenderit!
+      <section id="projects">
+        <h2 className="text-3xl md:text-4xl font-bold text-center">Projects</h2>
+        <p className="font-bold text-center">
+          These are some of the projects I've had the privilege to build. Each
+          one represents a unique challenge and a creative solution,
+          demonstrating my skills and commitment to crafting digital
+          experiences. Explore these projects to get a glimpse of my work and
+          the passion I bring to every endeavor.
         </p>
-      </section> */}
-      <div>
+        <Projects />
+      </section>
+      <section id="email">
+        <h2 className="text-3xl md:text-4xl font-bold text-center">Contact</h2>
         <Email />
-      </div>
+      </section>
     </main>
   );
 }
