@@ -54,7 +54,7 @@ export default function Home() {
       </section>
       <section>
         <Heading>Tech stack</Heading>
-        <div className="flex flex-wrap justify-center gap-5 capitalize">
+        <ul className="flex flex-wrap justify-center gap-5 capitalize">
           {[
             "HTML",
             "CSS",
@@ -72,12 +72,14 @@ export default function Home() {
             "Redux",
             "Zustand",
             "Prisma",
-          ].map((tech, index) => (
-            <Card key={index} className="py-2 px-4 shadow">
-              <CardTitle>{tech}</CardTitle>
-            </Card>
+          ].map((tech) => (
+            <li key={tech}>
+              <Card className="py-2 px-4 shadow">
+                <CardTitle>{tech}</CardTitle>
+              </Card>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
       <section id="email">
         <Heading>Contact</Heading>
