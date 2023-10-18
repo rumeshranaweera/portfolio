@@ -34,7 +34,7 @@ const linkList: LinkList[] = [
     image: "/github-sign.png",
     url: "https://github.com/rumeshranaweera",
   },
-  { title: "CV", image: "/curriculum-vitae.png", url: "/rumesh-Ranaweera.pdf" },
+  { title: "CV", image: "/curriculum-vitae.png", url: "/Rumesh-Ranaweera.pdf" },
 ];
 
 const Nav = () => {
@@ -102,7 +102,7 @@ function AppIcon({
       className="aspect-square w-10 rounded-md relative"
       title={title}
     >
-      {url === "/rumesh-Ranaweera.pdf" ? (
+      {url === "/Rumesh-Ranaweera.pdf" ? (
         <a href={url} target="_blank">
           <Image src={image} fill alt={title} />
         </a>
