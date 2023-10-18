@@ -25,7 +25,7 @@ const linkList: LinkList[] = [
     url: "https://www.linkedin.com/in/rumesh-ranaweera/",
   },
   {
-    title: "twitter",
+    title: "X",
     image: "/twitter.png",
     url: "https://twitter.com/RumeshR2",
   },
@@ -102,14 +102,15 @@ function AppIcon({
       className="aspect-square w-10 rounded-md relative"
       title={title}
     >
-      {url === "/rumesh-Ranaweera.pdf" && (
+      {url === "/rumesh-Ranaweera.pdf" ? (
+        <a href={url} target="_blank" className="cursor-pointer">
+          <Image src={image} fill alt={title} />
+        </a>
+      ) : (
         <a href={url} target="_blank">
-          <Image src={image} fill alt="git" />
+          <Image src={image} fill alt={title} />
         </a>
       )}
-      <a href={url} target="_blank">
-        <Image src={image} fill alt="git" />
-      </a>
     </motion.div>
   );
 }
