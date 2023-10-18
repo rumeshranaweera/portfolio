@@ -1,39 +1,155 @@
 "use client";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+  useMotionValue,
+  MotionValue,
+} from "framer-motion";
 import { ArrowUp } from "lucide-react";
-import { useState } from "react";
+import Image from "next/image";
+import { title } from "process";
+import { useState, useRef } from "react";
+type LinkList = {
+  title: string;
+  image: string;
+  url: string;
+};
+
+const linkList: LinkList[] = [
+  {
+    title: "linkedin",
+    image: "/linkedin.png",
+    url: "https://www.linkedin.com/in/rumesh-ranaweera/",
+  },
+  {
+    title: "twitter",
+    image: "/twitter.png",
+    url: "https://twitter.com/RumeshR2",
+  },
+  {
+    title: "github",
+    image: "/github-sign.png",
+    url: "https://github.com/rumeshranaweera",
+  },
+  { title: "CV", image: "/curriculum-vitae.png", url: "/rumesh-Ranaweera.pdf" },
+];
 
 const Nav = () => {
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
   const [showRR, setShowRR] = useState(true);
   useMotionValueEvent(scrollY, "change", (latest) => {
-    latest > 200 ? setShowRR(false) : setShowRR(true);
+    setShowRR(latest < 200);
     if (latest > scrollY.getPrevious() && latest > 200) setHidden(true);
     else setHidden(false);
   });
+  let mouseX = useMotionValue(Infinity);
   return (
     <header className="flex items-center justify-center ">
       <motion.nav
         variants={{ visible: { y: 0 }, hidden: { y: -200 } }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.3 }}
-        className="container bg-neutral-200/30 w-full fixed top-3 z-50 rounded-full flex justify-center p-2 backdrop-blur-sm"
+        className="container bg-transparent w-full fixed top-3 z-50 flex justify-center p-2 "
       >
-        <a
-          href="#"
-          className="aspect-square h-10 md:h-20 rounded-full bg-neutral-900  grid place-items-center text-white font-bold"
-          title={
-            showRR
-              ? "Ranjan Ramanayake 😂 sike Rumesh Ranaweera"
-              : "Scroll To Top"
-          }
+        <motion.div
+          onMouseMove={(e) => mouseX.set(e.pageX)}
+          onMouseLeave={() => mouseX.set(Infinity)}
+          className="mx-auto flex h-16 items-start gap-4 rounded-2xl bg-neutral-200/30 backdrop-blur-sm px-4 pt-3"
         >
-          {showRR ? "RR" : <ArrowUp className="w-5 md:w-10" />}
-        </a>
+          {/* {[...Array(5).keys()].map((i) => (
+            <AppIcon mouseX={mouseX} key={i} />
+          ))} */}
+          {linkList.slice(0, 2).map((link) => (
+            <AppIcon mouseX={mouseX} key={link.title} data={link} />
+          ))}
+          <MiddleIcon mouseX={mouseX} showRR={showRR} />
+          {linkList.slice(2, 4).map((link) => (
+            <AppIcon mouseX={mouseX} key={link.title} data={link} />
+          ))}
+        </motion.div>
       </motion.nav>
     </header>
   );
 };
+
+function AppIcon({
+  mouseX,
+  data: { image, title, url },
+}: {
+  mouseX: MotionValue;
+  data: LinkList;
+}) {
+  console.log();
+  let ref = useRef<HTMLDivElement>(null);
+
+  let distance = useTransform(mouseX, (val) => {
+    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  let widthSync = useTransform(distance, [-150, 0, 150], [40, 100, 40]);
+  let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ width }}
+      className="aspect-square w-10 rounded-md relative"
+      title={title}
+    >
+      {url === "/rumesh-Ranaweera.pdf" && (
+        <a href={url} target="_blank">
+          <Image src={image} fill alt="git" />
+        </a>
+      )}
+      <a href={url} target="_blank">
+        <Image src={image} fill alt="git" />
+      </a>
+    </motion.div>
+  );
+}
+function MiddleIcon({
+  mouseX,
+  showRR,
+}: {
+  mouseX: MotionValue;
+  showRR: boolean;
+}) {
+  let ref = useRef<HTMLDivElement>(null);
+
+  let distance = useTransform(mouseX, (val) => {
+    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  let widthSync = useTransform(distance, [-150, 0, 150], [40, 100, 40]);
+  let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ width }}
+      className="aspect-square w-10 rounded-full bg-gray-400"
+    >
+      <a
+        href="#"
+        className="aspect-square rounded-lg bg-neutral-900  grid place-items-center text-white font-bold"
+        title={
+          showRR
+            ? "Ranjan Ramanayake 😂 sike Rumesh Ranaweera"
+            : "Scroll To Top"
+        }
+      >
+        {showRR ? "RR" : <ArrowUp className="w-5 md:w-10" />}
+      </a>
+    </motion.div>
+  );
+}
 
 export default Nav;

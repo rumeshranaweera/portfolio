@@ -15,11 +15,13 @@ const Projects = async () => {
     <div className="my-5 text-center">
       {/* <div>{JSON.stringify(data.projects[0])}</div> */}
       <Suspense fallback="loading">
-        <div className="flex flex-wrap justify-center gap-5">
+        <ul className="flex flex-wrap justify-center gap-5">
           {data.projects.map((project, index) => (
-            <ProjectCard key={index} data={project} />
+            <li key={index}>
+              <ProjectCard data={project} />
+            </li>
           ))}
-        </div>
+        </ul>
       </Suspense>
     </div>
   );

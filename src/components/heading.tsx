@@ -11,7 +11,7 @@ const Heading = ({ as: As = "h2", children, className, ...props }: Props) => {
   return (
     <As
       className={cn(
-        "text-3xl md:text-4xl font-bold text-center my-4 md:my-8",
+        "text-3xl md:text-4xl font-bold text-center my-4 md:my-8 capitalize",
         className
       )}
       {...props}
