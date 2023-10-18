@@ -103,7 +103,12 @@ function AppIcon({
       title={title}
     >
       {url === "/rumesh-Ranaweera.pdf" ? (
-        <a href={url} target="_blank" className="cursor-pointer">
+        <a
+          href={url}
+          download={url.substring(1)}
+          target="_blank"
+          className="cursor-pointer"
+        >
           <Image src={image} fill alt={title} />
         </a>
       ) : (
