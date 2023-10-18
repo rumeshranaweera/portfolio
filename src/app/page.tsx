@@ -1,4 +1,5 @@
 import Email from "@/components/email";
+import Heading from "@/components/heading";
 import HeroScrollButton from "@/components/heroScrollButton";
 import HeroTitle from "@/components/heroTitle";
 import Projects from "@/components/projects";
@@ -41,7 +42,7 @@ export default function Home() {
         <HeroScrollButton />
       </section>
       <section id="projects">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Projects</h2>
+        <Heading>Projects</Heading>
         <p className="font-bold text-center">
           These are some of the projects I&apos;ve had the privilege to build.
           Each one represents a unique challenge and a creative solution,
@@ -52,9 +53,7 @@ export default function Home() {
         <Projects />
       </section>
       <section>
-        <h2 className="text-3xl md:text-4xl font-bold text-center my-4">
-          Tech stack
-        </h2>
+        <Heading>Tech stack</Heading>
         <div className="flex flex-wrap justify-center gap-5 capitalize">
           {[
             "HTML",
@@ -81,7 +80,7 @@ export default function Home() {
         </div>
       </section>
       <section id="email">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Contact</h2>
+        <Heading>Contact</Heading>
         <Email />
       </section>
     </main>
