@@ -53,12 +53,12 @@ const Nav = () => {
         variants={{ visible: { y: 0 }, hidden: { y: -200 } }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.3 }}
-        className="container bg-transparent w-full fixed top-3 z-50 flex justify-center p-2 "
+        className="container  w-fit fixed top-3 z-50 flex justify-center p-2 "
       >
         <motion.div
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="mx-auto flex h-16 items-start gap-4 rounded-2xl bg-neutral-200/30 backdrop-blur-sm px-4 pt-3"
+          className="mx-auto flex h-16 items-start gap-4 rounded-2xl border border-neutral-500/30 bg-neutral-200/30 backdrop-blur-sm px-4 pt-3"
         >
           {/* {[...Array(5).keys()].map((i) => (
             <AppIcon mouseX={mouseX} key={i} />
