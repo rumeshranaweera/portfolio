@@ -1,17 +1,16 @@
 "use client";
 import {
+  MotionValue,
   motion,
+  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useSpring,
   useTransform,
-  useMotionValue,
-  MotionValue,
 } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import Image from "next/image";
-import { title } from "process";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 type LinkList = {
   title: string;
   image: string;
@@ -39,8 +38,8 @@ const linkList: LinkList[] = [
 
 const Nav = () => {
   const [hidden, setHidden] = useState(false);
-  const { scrollY } = useScroll();
   const [showRR, setShowRR] = useState(true);
+  const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
     setShowRR(latest < 200);
     if (latest > scrollY.getPrevious() && latest > 200) setHidden(true);
@@ -58,11 +57,8 @@ const Nav = () => {
         <motion.div
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="mx-auto flex h-16 items-start gap-4 rounded-2xl border border-neutral-500/30 bg-neutral-200/30 backdrop-blur-sm px-4 pt-3"
+          className="mx-auto flex h-16 items-start gap-4 rounded-2xl border border-neutral-500/10 bg-neutral-200/10 backdrop-blur-sm px-4 pt-3"
         >
-          {/* {[...Array(5).keys()].map((i) => (
-            <AppIcon mouseX={mouseX} key={i} />
-          ))} */}
           {linkList.slice(0, 2).map((link) => (
             <AppIcon mouseX={mouseX} key={link.title} data={link} />
           ))}
