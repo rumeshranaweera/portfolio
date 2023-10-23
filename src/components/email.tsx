@@ -101,7 +101,7 @@ export default function Email() {
 
           <Link
             href={"mailto:rumeshranaweera99@gmail.com"}
-            className={`font-bold capitalize hidden sm:inline-block ${buttonVariants(
+            className={`font-bold capitalize hidden sm:inline-block rounded-md ${buttonVariants(
               {
                 variant: "ghost",
               }

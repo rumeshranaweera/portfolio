@@ -13,7 +13,7 @@ const HeroTitle = () => {
       initial="hidden"
       animate="visible"
       transition={{ staggerChildren: 0.02 }}
-      className="text-5xl md:text-7xl text-center font-bold my-10 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-500"
+      className="text-5xl md:text-7xl text-center font-bold my-10 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-500 cursor-default"
     >
       <span className="sr-only">Rumesh Ranaweera</span>
       {"Rumesh Ranaweera".split("").map((l, index) => (

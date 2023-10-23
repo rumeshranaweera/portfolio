@@ -10,17 +10,16 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="container mx-auto">
+    <main className="mx-auto container">
       <section
         id="hero"
-        className="h-screen flex flex-col items-center justify-center relative "
+        className="h-screen flex flex-col items-center justify-center relative  m-0"
       >
         <HeroTitle />
-        <p className="text-center font-bold text-xl">
+        <p className="text-center font-bold text-xl relative">
           I am a Software Engineering student at{" "}
           <TooltipProvider>
             <Tooltip>
