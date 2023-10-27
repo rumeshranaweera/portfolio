@@ -126,7 +126,7 @@ export default function Email() {
                 </span>
               </TooltipTrigger>
               <TooltipContent>
-                <p>copy to chipboard</p>
+                <p>Click to copy</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
