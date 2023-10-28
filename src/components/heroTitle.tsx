@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimationProps, motion } from "framer-motion";
+import { AnimationProps, LazyMotion, domAnimation, m } from "framer-motion";
 
 const HeroTitle = () => {
   const letter: AnimationProps["variants"] = {
@@ -9,19 +9,21 @@ const HeroTitle = () => {
   };
 
   return (
-    <motion.h1
-      initial="hidden"
-      animate="visible"
-      transition={{ staggerChildren: 0.02 }}
-      className="text-5xl md:text-7xl text-center font-bold my-10 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-500 cursor-default"
-    >
-      <span className="sr-only">Rumesh Ranaweera</span>
-      {"Rumesh Ranaweera".split("").map((l, index) => (
-        <motion.span aria-hidden key={index} variants={letter}>
-          {l}
-        </motion.span>
-      ))}
-    </motion.h1>
+    <LazyMotion features={domAnimation}>
+      <m.h1
+        initial="hidden"
+        animate="visible"
+        transition={{ staggerChildren: 0.02 }}
+        className="text-5xl md:text-7xl text-center font-bold my-10 bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-500 cursor-default"
+      >
+        <span className="sr-only">Rumesh Ranaweera</span>
+        {"Rumesh Ranaweera".split("").map((l, index) => (
+          <m.span aria-hidden key={index} variants={letter}>
+            {l}
+          </m.span>
+        ))}
+      </m.h1>
+    </LazyMotion>
   );
 };
 

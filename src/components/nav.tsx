@@ -1,7 +1,9 @@
 "use client";
 import {
+  LazyMotion,
   MotionValue,
-  motion,
+  domAnimation,
+  m,
   useMotionValue,
   useMotionValueEvent,
   useScroll,
@@ -47,28 +49,30 @@ const Nav = () => {
   });
   let mouseX = useMotionValue(Infinity);
   return (
-    <header className="flex items-center justify-center ">
-      <motion.nav
-        variants={{ visible: { y: 0 }, hidden: { y: -200 } }}
-        animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.3 }}
-        className="container  w-fit fixed top-3 z-50 flex justify-center p-2 "
-      >
-        <motion.div
-          onMouseMove={(e) => mouseX.set(e.pageX)}
-          onMouseLeave={() => mouseX.set(Infinity)}
-          className="mx-auto flex h-16 items-start gap-4 rounded-2xl border border-neutral-500/10 bg-neutral-200/10 backdrop-blur-sm px-4 pt-3"
+    <LazyMotion features={domAnimation}>
+      <header className="flex items-center justify-center ">
+        <m.nav
+          variants={{ visible: { y: 0 }, hidden: { y: -200 } }}
+          animate={hidden ? "hidden" : "visible"}
+          transition={{ duration: 0.3 }}
+          className="container  w-fit fixed top-3 z-50 flex justify-center p-2 "
         >
-          {linkList.slice(0, 2).map((link) => (
-            <AppIcon mouseX={mouseX} key={link.title} data={link} />
-          ))}
-          <MiddleIcon mouseX={mouseX} showRR={showRR} />
-          {linkList.slice(2, 4).map((link) => (
-            <AppIcon mouseX={mouseX} key={link.title} data={link} />
-          ))}
-        </motion.div>
-      </motion.nav>
-    </header>
+          <m.div
+            onMouseMove={(e) => mouseX.set(e.pageX)}
+            onMouseLeave={() => mouseX.set(Infinity)}
+            className="mx-auto flex h-16 items-start gap-4 rounded-2xl border border-neutral-500/10 bg-neutral-200/10 backdrop-blur-sm px-4 pt-3"
+          >
+            {linkList.slice(0, 2).map((link) => (
+              <AppIcon mouseX={mouseX} key={link.title} data={link} />
+            ))}
+            <MiddleIcon mouseX={mouseX} showRR={showRR} />
+            {linkList.slice(2, 4).map((link) => (
+              <AppIcon mouseX={mouseX} key={link.title} data={link} />
+            ))}
+          </m.div>
+        </m.nav>
+      </header>
+    </LazyMotion>
   );
 };
 
@@ -92,7 +96,7 @@ function AppIcon({
   let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       style={{ width }}
       className="aspect-square w-10 rounded-md relative"
@@ -107,7 +111,7 @@ function AppIcon({
           <Image src={image} fill alt={title} />
         </a>
       )}
-    </motion.div>
+    </m.div>
   );
 }
 function MiddleIcon({
@@ -129,7 +133,7 @@ function MiddleIcon({
   let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       style={{ width }}
       className="aspect-square w-10 rounded-full bg-gray-400"
@@ -145,7 +149,7 @@ function MiddleIcon({
       >
         {showRR ? "RR" : <ArrowUp className="w-5 md:w-10" />}
       </a>
-    </motion.div>
+    </m.div>
   );
 }
 
