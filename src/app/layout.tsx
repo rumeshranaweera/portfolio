@@ -25,7 +25,7 @@ export default function RootLayout({
       className="scroll-smooth antialiased scroll-m-4 @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-900"
     >
       <body
-        className={`${inter.className} [font-family:inter] bg-[url(https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png)]`}
+        className={`${inter.className} bg-[url(https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png)]`}
       >
         <Toaster />
         <Nav />
