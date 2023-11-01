@@ -191,7 +191,7 @@ export default function Email() {
                 {isLoading && (
                   <Loader className="animate-spin mr-2" size={15} />
                 )}
-                Sent
+                Send
               </Button>
             </div>
           </div>
