@@ -126,7 +126,7 @@ export default function Email() {
                 </span>
               </TooltipTrigger>
               <TooltipContent>
-                {errors.name?.message} <p>Click to copy</p>
+                {errors.name?.message} <span>Click to copy</span>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -135,14 +135,14 @@ export default function Email() {
       <CardContent>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="[&_p]:text-red-600 [&_p]:transition [&_p]:mt-2 [&_p]:font-semibold"
+          className="[&_span]:text-red-600 [&_span]:transition [&_span]:mt-1 [&_span]:block [&_span]:font-semibold"
         >
           <div className="grid w-full items-center gap-4 ">
             <div className="flex flex-col md:flex-row space-y-1.5 md:space-y-0 md:justify-start gap-5">
               <div className="md:w-1/2">
                 <Label htmlFor="name">Name</Label>
                 <Input id="name" placeholder="name" {...register("name")} />
-                {errors.name?.message && <p>{errors.name?.message}</p>}
+                <span>{errors.name?.message}</span>
               </div>
               <div className="md:w-1/2">
                 <Label htmlFor="email">Email</Label>
@@ -155,7 +155,7 @@ export default function Email() {
                   onClick={handleClick}
                   onBlur={() => (isEmailFocused = false)}
                 />
-                {errors.email?.message && <p>{errors.email?.message}</p>}
+                <span>{errors.email?.message}</span>
               </div>
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -166,7 +166,7 @@ export default function Email() {
                   placeholder="subject"
                   {...register("subject")}
                 />
-                {errors.subject?.message && <p>{errors.subject?.message}</p>}
+                <span>{errors.subject?.message}</span>
               </div>
               <div>
                 <Label htmlFor="message">Message</Label>
@@ -176,7 +176,7 @@ export default function Email() {
                   placeholder="Type your message here."
                   {...register("message")}
                 />
-                {errors.message?.message && <p>{errors.message?.message}</p>}
+                <span>{errors.message?.message}</span>
               </div>
               <Button
                 type="submit"
