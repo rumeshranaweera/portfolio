@@ -35,7 +35,11 @@ const linkList: LinkList[] = [
     image: "/github-sign.png",
     url: "https://github.com/rumeshranaweera",
   },
-  { title: "CV", image: "/curriculum-vitae.png", url: "/Rumesh-Ranaweera.pdf" },
+  {
+    title: "CV",
+    image: "/curriculum-vitae.png",
+    url: "/Rumesh-Ranaweera-cv.pdf",
+  },
 ];
 
 const Nav = () => {
@@ -102,15 +106,9 @@ function AppIcon({
       className="aspect-square w-10 rounded-md relative"
       title={title}
     >
-      {url === "/Rumesh-Ranaweera.pdf" ? (
-        <a href={url} target="_blank">
-          <Image src={image} fill alt={title} />
-        </a>
-      ) : (
-        <a href={url} target="_blank">
-          <Image src={image} fill alt={title} />
-        </a>
-      )}
+      <a href={url} target="_blank">
+        <Image src={image} fill alt={title} />
+      </a>
     </m.div>
   );
 }
@@ -141,11 +139,7 @@ function MiddleIcon({
       <a
         href="#"
         className="aspect-square rounded-lg bg-neutral-900  grid place-items-center text-white font-bold"
-        title={
-          showRR
-            ? "Ranjan Ramanayake 😂 sike Rumesh Ranaweera"
-            : "Scroll To Top"
-        }
+        title={showRR ? "Rumesh Ranaweera" : "Scroll To Top"}
       >
         {showRR ? "RR" : <ArrowUp className="w-5 md:w-10" />}
       </a>

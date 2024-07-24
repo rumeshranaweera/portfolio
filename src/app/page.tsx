@@ -3,6 +3,7 @@ import Heading from "@/components/heading";
 import HeroScrollButton from "@/components/heroScrollButton";
 import HeroTitle from "@/components/heroTitle";
 import Projects from "@/components/projects";
+import { CardSkeletons } from "@/components/skeleton/card";
 import { Card, CardTitle } from "@/components/ui/card";
 import {
   Tooltip,
@@ -10,6 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -50,7 +52,9 @@ export default function Home() {
           experiences. Explore these projects to get a glimpse of my work and
           the passion I bring to every endeavor.
         </p>
-        <Projects />
+        <Suspense fallback={<CardSkeletons />}>
+          <Projects />
+        </Suspense>
       </section>
       <section>
         <Heading>Tech stack</Heading>

@@ -18,7 +18,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  console.log(inter.className, inter.style);
   return (
     <html
       lang="en"

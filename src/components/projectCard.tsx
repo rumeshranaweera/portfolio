@@ -52,7 +52,7 @@ export function ProjectCard({ data }: { data: VercelResponse["projects"][0] }) {
   return (
     <LazyMotion features={domAnimation}>
       <Card
-        className="w-[350px] group relative max-w-md rounded-xl shadow-xl"
+        className="w-[350px] h-36 group relative max-w-md rounded-xl shadow-xl"
         onMouseMove={(e) => (isTouchDevice ? null : handleMouseMove(e))}
       >
         <m.div
@@ -77,9 +77,9 @@ export function ProjectCard({ data }: { data: VercelResponse["projects"][0] }) {
             </a>
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        {/* <CardContent>
           <div className="grid w-full items-center gap-4"></div>
-        </CardContent>
+        </CardContent> */}
         {/* <CardFooter className="flex justify-between"></CardFooter> */}
       </Card>
     </LazyMotion>
