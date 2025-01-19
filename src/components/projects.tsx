@@ -1,10 +1,8 @@
-import { unstable_noStore as noStore } from 'next/cache';
 import axios from "axios";
 import { type VercelResponse } from "../types/types";
 import { ProjectCard } from "./projectCard";
 
 const Projects = async () => {
-  noStore();
   const { data }: { data: VercelResponse } = await axios.get(
     "https://api.vercel.com/v9/projects",
     {
