@@ -14,7 +14,7 @@ import {
   LazyMotion,
   domAnimation,
   m,
-} from "framer-motion";
+} from "motion/react";
 
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 import {
@@ -68,8 +68,7 @@ export function ProjectCard({ data }: { data: VercelResponse["projects"][0] }) {
   }, []);
 
   // Live project URL (from latestDeployments alias or fallback)
-  const projectUrl =
-    data?.latestDeployments?.[0]?.alias?.[0] ?? data?.url ?? null;
+  const projectUrl = data?.latestDeployments?.[0]?.alias?.[0] ?? null;
 
   // GitHub repo URL from link object
   const githubUrl =
@@ -121,15 +120,14 @@ export function ProjectCard({ data }: { data: VercelResponse["projects"][0] }) {
 
         <CardHeader className="pb-1">
           <CardTitle className="text-lg md:text-xl flex items-center gap-2">
-            {getFrameworkIcon(data.framework)}
+            {getFrameworkIcon(data?.framework || "Unknown")}
             {data.name}
           </CardTitle>
           <CardDescription className="text-sm text-left text-gray-600 dark:text-gray-400">
             {/* You can customize description or add a field for it */}
-            {data.description ??
-              `A project built with ${
-                data.framework ?? "various technologies"
-              }.`}
+            {`A project built with ${
+              data.framework ?? "various technologies"
+            }.`}
           </CardDescription>
         </CardHeader>
 
