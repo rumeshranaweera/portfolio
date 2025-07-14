@@ -48,7 +48,12 @@ const Nav = () => {
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
     setShowRR(latest < 200);
-    if (latest > scrollY?.getPrevious() && latest > 200) setHidden(true);
+    if (
+      typeof scrollY.getPrevious === "function" &&
+      latest > (scrollY.getPrevious?.() ?? 0) &&
+      latest > 200
+    )
+      setHidden(true);
     else setHidden(false);
   });
   let mouseX = useMotionValue(Infinity);
