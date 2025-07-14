@@ -9,7 +9,7 @@ import {
   useScroll,
   useSpring,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 import { ArrowUp } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
@@ -48,7 +48,7 @@ const Nav = () => {
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
     setShowRR(latest < 200);
-    if (latest > scrollY.getPrevious() && latest > 200) setHidden(true);
+    if (latest > scrollY?.getPrevious() && latest > 200) setHidden(true);
     else setHidden(false);
   });
   let mouseX = useMotionValue(Infinity);
