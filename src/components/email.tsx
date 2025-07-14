@@ -26,6 +26,7 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "./ui/use-toast";
+import Heading from "./heading";
 
 export default function Email() {
   const { toast } = useToast();
@@ -85,118 +86,122 @@ export default function Email() {
     }
   };
   return (
-    <Card className="mx-auto max-w-2xl my-5  bg-neutral-200/10 backdrop-blur-lg">
-      <CardHeader className="flex justify-between">
-        <div className="flex justify-between items-center">
-          <CardTitle className="capitalize inline-block">
-            send me an email{" "}
-            <Link href={"mailto:rumeshranaweera99@gmail.com"}>
-              <span className="sr-only">open in app</span>
-              <ExternalLink
-                className="inline-block sm:hidden font-bold"
-                size={20}
-              />
-            </Link>
-          </CardTitle>
+    <section id="email">
+      <Heading>Contact</Heading>
 
-          <Link
-            href={"mailto:rumeshranaweera99@gmail.com"}
-            className={`font-bold capitalize hidden sm:inline-block rounded-md ${buttonVariants(
-              {
-                variant: "ghost",
-              }
-            )}`}
-          >
-            open in App <ExternalLink className="inline-block" size={18} />
-          </Link>
-        </div>
-        <CardDescription>
-          @{" "}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span
-                  className="sm:font-bold cursor-pointer underline text-sm"
-                  onClick={(e) => {
-                    navigator.clipboard.writeText(e.currentTarget.innerText);
-                    toast({ description: "Email copied" });
-                  }}
-                >
-                  rumeshranaweera99@gmail.com
-                </span>
-              </TooltipTrigger>
-              <TooltipContent>
-                {errors.name?.message} <span>Click to copy</span>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="[&_span]:text-red-600 [&_span]:transition [&_span]:mt-1 [&_span]:block [&_span]:font-semibold"
-        >
-          <div className="grid w-full items-center gap-4 ">
-            <div className="flex flex-col md:flex-row space-y-1.5 md:space-y-0 md:justify-start gap-5">
-              <div className="md:w-1/2">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="name" {...register("name")} />
-                <span>{errors.name?.message}</span>
-              </div>
-              <div className="md:w-1/2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  placeholder="Email@email.com"
-                  {...register("email")}
-                  defaultValue={"@gmail.com"}
-                  onFocus={handleFocus}
-                  onClick={handleClick}
-                  onBlur={() => (isEmailFocused = false)}
+      <Card className="mx-auto max-w-2xl my-5  bg-neutral-200/10 backdrop-blur-lg">
+        <CardHeader className="flex justify-between">
+          <div className="flex justify-between items-center">
+            <CardTitle className="capitalize inline-block">
+              email me{" "}
+              <Link href={"mailto:rumeshranaweera99@gmail.com"}>
+                <span className="sr-only">open in app</span>
+                <ExternalLink
+                  className="inline-block sm:hidden font-bold"
+                  size={20}
                 />
-                <span>{errors.email?.message}</span>
-              </div>
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <div>
-                <Label htmlFor="subject">Subject</Label>
-                <Input
-                  id="subject"
-                  placeholder="subject"
-                  {...register("subject")}
-                />
-                <span>{errors.subject?.message}</span>
-              </div>
-              <div>
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                  spellCheck
-                  id="message"
-                  placeholder="Type your message here."
-                  {...register("message")}
-                />
-                <span>{errors.message?.message}</span>
-              </div>
-              <Button
-                type="submit"
-                className={cn(
-                  "aria-disabled:cursor-not-allowed",
-                  isLoading &&
-                    "bg-opacity-50 bg-neutral-900 hover:bg-neutral-900/50"
-                )}
-                aria-disabled={isLoading}
-              >
-                {" "}
-                {isLoading && (
-                  <Loader className="animate-spin mr-2" size={15} />
-                )}
-                Send
-              </Button>
-            </div>
+              </Link>
+            </CardTitle>
+
+            <Link
+              href={"mailto:rumeshranaweera99@gmail.com"}
+              className={`font-bold capitalize hidden sm:inline-block rounded-md ${buttonVariants(
+                {
+                  variant: "ghost",
+                }
+              )}`}
+            >
+              open in App <ExternalLink className="inline-block" size={18} />
+            </Link>
           </div>
-        </form>
-      </CardContent>
-    </Card>
+          <CardDescription>
+            @{" "}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span
+                    className="sm:font-bold cursor-pointer underline text-sm"
+                    onClick={(e) => {
+                      navigator.clipboard.writeText(e.currentTarget.innerText);
+                      toast({ description: "Email copied" });
+                    }}
+                  >
+                    rumeshranaweera99@gmail.com
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {errors.name?.message} <span>Click to copy</span>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="[&_span]:text-red-600 [&_span]:transition [&_span]:mt-1 [&_span]:block [&_span]:font-semibold"
+          >
+            <div className="grid w-full items-center gap-4 ">
+              <div className="flex flex-col md:flex-row space-y-1.5 md:space-y-0 md:justify-start gap-5">
+                <div className="md:w-1/2">
+                  <Label htmlFor="name">Name</Label>
+                  <Input id="name" placeholder="name" {...register("name")} />
+                  <span>{errors.name?.message}</span>
+                </div>
+                <div className="md:w-1/2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    placeholder="Email@email.com"
+                    {...register("email")}
+                    defaultValue={"@gmail.com"}
+                    onFocus={handleFocus}
+                    onClick={handleClick}
+                    onBlur={() => (isEmailFocused = false)}
+                  />
+                  <span>{errors.email?.message}</span>
+                </div>
+              </div>
+              <div className="flex flex-col space-y-1.5">
+                <div>
+                  <Label htmlFor="subject">Subject</Label>
+                  <Input
+                    id="subject"
+                    placeholder="subject"
+                    {...register("subject")}
+                  />
+                  <span>{errors.subject?.message}</span>
+                </div>
+                <div>
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea
+                    spellCheck
+                    id="message"
+                    placeholder="Type your message here."
+                    {...register("message")}
+                  />
+                  <span>{errors.message?.message}</span>
+                </div>
+                <Button
+                  type="submit"
+                  className={cn(
+                    "aria-disabled:cursor-not-allowed",
+                    isLoading &&
+                      "bg-opacity-50 bg-neutral-900 hover:bg-neutral-900/50"
+                  )}
+                  aria-disabled={isLoading}
+                >
+                  {" "}
+                  {isLoading && (
+                    <Loader className="animate-spin mr-2" size={15} />
+                  )}
+                  Send
+                </Button>
+              </div>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </section>
   );
 }
