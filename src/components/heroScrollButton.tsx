@@ -15,7 +15,6 @@ const HeroScrollButton = () => {
               repeat: Infinity,
               repeatType: "loop",
             }}
-            // @ts-ignore
             className="w-3 h-3 rounded-full bg-neutral-900 mb-1"
           />
         </div>

@@ -59,10 +59,9 @@ const Nav = () => {
           variants={{ visible: { y: 0 }, hidden: { y: -200 } }}
           animate={hidden ? "hidden" : "visible"}
           transition={{ duration: 0.3 }}
-          // @ts-ignore
           className="container  w-fit fixed top-3 z-50 flex justify-center p-2 "
         >
-          <div
+          <m.div
             onMouseMove={(e) => mouseX.set(e.pageX)}
             onMouseLeave={() => mouseX.set(Infinity)}
             className="mx-auto flex h-16 items-start gap-4 rounded-2xl border border-neutral-500/10 bg-neutral-200/10 backdrop-blur-sm px-4 pt-3"
@@ -74,7 +73,7 @@ const Nav = () => {
             {linkList.slice(2, 4).map((link) => (
               <AppIcon mouseX={mouseX} key={link.title} data={link} />
             ))}
-          </div>
+          </m.div>
         </m.nav>
       </header>
     </LazyMotion>
@@ -104,7 +103,6 @@ function AppIcon({
     <m.div
       ref={ref}
       style={{ width }}
-      // @ts-ignore
       className="aspect-square w-10 rounded-md relative"
       title={title}
     >
@@ -136,7 +134,6 @@ function MiddleIcon({
     <m.div
       ref={ref}
       style={{ width }}
-      // @ts-ignore
       className="aspect-square w-10 rounded-full bg-gray-400"
     >
       <a
