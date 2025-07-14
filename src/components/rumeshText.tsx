@@ -5,7 +5,7 @@ import {
   useScroll,
   LazyMotion,
   domAnimation,
-} from "framer-motion";
+} from "motion/react";
 const RumeshText = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [1, -480]);
