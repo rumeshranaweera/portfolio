@@ -19,7 +19,7 @@ export default function Model({ mouse }: any) {
   const { nodes } = useGLTF("/3d-shapes/floating_shapes4.glb");
 
   return (
-    <group>
+    <>
       <Mesh
         node={nodes.Sphere001}
         multiplier={2.4}
@@ -86,7 +86,7 @@ export default function Model({ mouse }: any) {
         mouse={mouse}
         isActive={activeShape == 11}
       />
-    </group>
+    </>
   );
 }
 
