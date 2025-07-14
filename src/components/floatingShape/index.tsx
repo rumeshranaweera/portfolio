@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import Model from "./model";
 import { Environment } from "@react-three/drei";
-import { useMotionValue, useSpring } from "framer-motion";
+import { useMotionValue, useSpring } from "motion/react";
 
 export default function Index() {
   const mouse = {
