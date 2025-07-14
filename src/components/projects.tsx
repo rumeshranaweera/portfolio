@@ -1,26 +1,23 @@
-import axios from "axios";
-import { type VercelResponse } from "../types/types";
-import { ProjectCard } from "./projectCard";
+import { Suspense } from "react";
+import { CardSkeletons } from "./skeleton/card";
+import Heading from "./heading";
+import ProjectList from "./projectList";
 
 const Projects = async () => {
-  const { data }: { data: VercelResponse } = await axios.get(
-    "https://api.vercel.com/v9/projects",
-    {
-      headers: { Authorization: "Bearer " + process.env.VERCEL_TOKEN },
-    }
-  );
-
   return (
-    <div className="my-5 text-center">
-      {/* <div>{JSON.stringify(data.projects[0])}</div> */}
-      <ul className="flex flex-wrap justify-center gap-5">
-        {data.projects.map((project, index) => (
-          <li key={index}>
-            <ProjectCard data={project} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <section id="projects">
+      <Heading>Projects</Heading>
+      <p className="font-bold text-center">
+        These are some of the projects I&apos;ve had the privilege to build.
+        Each one represents a unique challenge and a creative solution,
+        demonstrating my skills and commitment to crafting digital experiences.
+        Explore these projects to get a glimpse of my work and the passion I
+        bring to every endeavor.
+      </p>
+      <Suspense fallback={<CardSkeletons />}>
+        <ProjectList />
+      </Suspense>
+    </section>
   );
 };
 

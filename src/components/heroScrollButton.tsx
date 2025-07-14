@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const HeroScrollButton = () => {
   return (
     <div className="absolute bottom-8 sm:bottom-32 w-full flex justify-center items-center">
-      <a href="#projects">
+      <a href="#experience">
         <div className="w-[35px] h-[64px] rounded-3xl border-4 border-neutral-900 flex justify-center items-start p-2">
           <motion.div
             animate={{

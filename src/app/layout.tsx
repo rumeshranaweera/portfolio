@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <Toaster />
         <Nav />
-        <FloatingShape />
+        {/* <FloatingShape /> */}
         {children}
         <RumeshText />
       </body>
