@@ -1,9 +1,9 @@
 "use client";
 
-import { AnimationProps, LazyMotion, domAnimation, m } from "framer-motion";
+import { LazyMotion, domAnimation, m } from "motion/react";
 
 const HeroTitle = () => {
-  const letter: AnimationProps["variants"] = {
+  const letter = {
     hidden: { y: -20, opacity: 0.2 },
     visible: { y: 0, opacity: 1 },
   };
